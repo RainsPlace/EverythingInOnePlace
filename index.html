@@ -85,6 +85,23 @@ header h1 {
   letter-spacing:.22em;
   text-transform:uppercase;
 }
+.header-note {
+  margin-top:10px;
+  font-size:.74rem;
+  color:var(--dim);
+  letter-spacing:.01em;
+}
+.header-note a { color:var(--accent); text-decoration:underline; }
+.header-note a:hover { color:var(--text); }
+.visit-counter {
+  position:absolute; top:18px; right:20px;
+  text-align:center; line-height:1.35;
+}
+.vc-num {
+  display:block; font-size:1.05rem; font-weight:700; color:var(--accent);
+  text-shadow:0 0 12px rgba(58,154,189,.45);
+}
+.vc-label { font-size:.62rem; color:var(--dim); letter-spacing:.08em; text-transform:uppercase; }
 
 /* ── APP BODY ── */
 .app-body {
@@ -129,6 +146,13 @@ header h1 {
   white-space:nowrap;
 }
 .sb-btn:hover { color:var(--accent); background:rgba(58,154,189,.07); }
+.sb-sub-btn {
+  display:block; width:100%; background:none; border:none; cursor:pointer;
+  padding:5px 10px 5px 26px; text-align:left; font-size:.76rem; color:var(--dim);
+  border-radius:6px; transition:all .15s; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.sb-sub-btn:hover { color:var(--text); background:rgba(58,154,189,.05); }
+.sb-sub-btn.active { color:var(--accent); font-weight:600; }
 .sb-btn.active {
   color:var(--accent);
   background:rgba(58,154,189,.12);
@@ -477,8 +501,13 @@ footer {
 
 <!-- ── HEADER ── -->
 <header>
+  <div class="visit-counter">
+    <span class="vc-num" id="vcNum">—</span>
+    <span class="vc-label">page views</span>
+  </div>
   <h1>Private Poker League Accord</h1>
   <p class="tagline">Nordic Warriors &bull; Orion&rsquo;s Belt &bull; Wildhorses &bull; Early Birds &bull; Midnight Grind &bull; Leagues Invitational</p>
+  <p class="header-note">All of our private leagues are hosted by Casino.org &amp; Replay Poker and apply all rules and guidelines listed in the <a href="https://www.casino.org/replaypoker/help/playbook" target="_blank" rel="noopener">Community Playbook</a>.</p>
 </header>
 
 <!-- ── MOBILE NAV ── -->
@@ -499,11 +528,18 @@ footer {
     <nav class="sb-nav">
       <div class="sb-section-label">Leagues</div>
       <button class="sb-btn active" data-tab="leagueinfo" onclick="switchTab('leagueinfo')">🗺 Leagues Info</button>
+      <button class="sb-sub-btn" data-tab="league-nw" onclick="switchTab('league-nw')">⚔️ Nordic Warriors</button>
+      <button class="sb-sub-btn" data-tab="league-ob" onclick="switchTab('league-ob')">⭐ Orion's Belt</button>
+      <button class="sb-sub-btn" data-tab="league-wh" onclick="switchTab('league-wh')">🐎 Wildhorses</button>
+      <button class="sb-sub-btn" data-tab="league-li" onclick="switchTab('league-li')">🎖 Leagues Invitational</button>
+      <button class="sb-sub-btn" data-tab="league-mg" onclick="switchTab('league-mg')">🌙 Midnight Grind</button>
+      <button class="sb-sub-btn" data-tab="league-eb" onclick="switchTab('league-eb')">🐦 Early Birds</button>
+      <button class="sb-sub-btn" data-tab="league-gu" onclick="switchTab('league-gu')">🎓 Gramps University</button>
       <div class="sb-divider"></div>
       <div class="sb-section-label">Links</div>
       <button class="sb-btn" data-tab="webapps"      onclick="switchTab('webapps')">      ⚡ Web Apps</button>
       <button class="sb-btn" data-tab="leaderboards" onclick="switchTab('leaderboards')"> 🏆 Leaderboards</button>
-      <button class="sb-btn" data-tab="lobbies"      onclick="switchTab('lobbies')">      🎮 League Lobbies</button>
+      <button class="sb-btn" data-tab="lobbies"      onclick="switchTab('lobbies')">      🎮 League Lobbies All</button>
       <button class="sb-btn" data-tab="forums"       onclick="switchTab('forums')">       💬 Forums</button>
       <button class="sb-btn" data-tab="other"        onclick="switchTab('other')">        🔗 Other Links</button>
     </nav>
@@ -519,7 +555,7 @@ footer {
       <p class="li-intro">Six private leagues, one community. From team poker to individual grinders, early birds to night owls &mdash; there&rsquo;s a game for every style and every schedule.</p>
 
       <!-- Nordic Warriors -->
-      <div class="li-card nw">
+      <div class="li-card nw" data-league="nw">
         <div class="li-card-hdr">
           <span class="li-card-icon">⚔️</span>
           <div class="li-card-titles">
@@ -553,7 +589,7 @@ footer {
       </div>
 
       <!-- Orion's Belt -->
-      <div class="li-card ob">
+      <div class="li-card ob" data-league="ob">
         <div class="li-card-hdr">
           <span class="li-card-icon">⭐</span>
           <div class="li-card-titles">
@@ -572,6 +608,7 @@ footer {
             <a class="li-link" href="https://docs.google.com/spreadsheets/d/17ikWbLuxYSBvZaQYnoMfsKRzUNlhujPWAHCKFwCRYRI/edit?gid=1885499830#gid=1885499830" target="_blank" rel="noopener">📋 Sheets Leaderboard</a>
             <a class="li-link" href="https://forum.casino.org/t/orions-belt-team-poker/57677/9999" target="_blank" rel="noopener">💬 Forum</a>
             <a class="li-link" href="https://docs.google.com/document/d/e/2PACX-1vQUMrFRBbHeECRuUf4t3Pmh0_aAtVkaR4CxPh1IPVFXSS4qYeUR8EOAqviqv99ub1wORQIb60CU5qo3/pub" target="_blank" rel="noopener">📖 How It Works</a>
+            <a class="li-link" href="https://script.google.com/macros/s/AKfycbwUHbg75pPTY1-kvNNd8DxRh_CyZCkDNTjrmzcrw8oKA3o3Yw2gOKoNImtazZVchmzD/exec" target="_blank" rel="noopener">🎖 Captain&rsquo;s Hub</a>
           </div>
           <div class="li-section-title">Organizers</div>
           <div class="li-org-links">
@@ -583,7 +620,7 @@ footer {
       </div>
 
       <!-- Wildhorses -->
-      <div class="li-card wh">
+      <div class="li-card wh" data-league="wh">
         <div class="li-card-hdr">
           <span class="li-card-icon">🐎</span>
           <div class="li-card-titles">
@@ -635,7 +672,7 @@ footer {
       </div>
 
       <!-- Leagues Invitational -->
-      <div class="li-card">
+      <div class="li-card" data-league="li">
         <div class="li-card-hdr">
           <span class="li-card-icon">🎖</span>
           <div class="li-card-titles">
@@ -682,7 +719,7 @@ footer {
       </div>
 
       <!-- Midnight Grind -->
-      <div class="li-card mg">
+      <div class="li-card mg" data-league="mg">
         <div class="li-card-hdr">
           <span class="li-card-icon">🌙</span>
           <div class="li-card-titles">
@@ -720,7 +757,7 @@ footer {
       </div>
 
       <!-- Early Birds -->
-      <div class="li-card eb">
+      <div class="li-card eb" data-league="eb">
         <div class="li-card-hdr">
           <span class="li-card-icon">🐦</span>
           <div class="li-card-titles">
@@ -748,6 +785,7 @@ footer {
             <a class="li-link" href="https://rainsplace.github.io/EBApp/" target="_blank" rel="noopener">📊 Web App Leaderboard</a>
             <a class="li-link" href="https://docs.google.com/spreadsheets/d/15uamnSc938MlU2FWu0KQibobJYtALHKU_Wgkf7VhTOQ/edit?gid=2112906447#gid=2112906447" target="_blank" rel="noopener">📋 Sheets Leaderboard</a>
             <a class="li-link" href="https://docs.google.com/document/d/1Whcr8I2p2DkAgavXwNzMfeEHM9tByjaK7wzUC_04xes/edit?usp=sharing" target="_blank" rel="noopener">📖 New Player Info</a>
+            <a class="li-link" href="https://script.google.com/macros/s/AKfycbwyseXz3fBGATsMZjcgAdvpm3w_dPrOM9vOwIlkwyn-I1J05pIGablBnAaSnJU7B8RWEA/exec" target="_blank" rel="noopener">🎖 Captain&rsquo;s Hub</a>
           </div>
           <div class="li-section-title">Organizers</div>
           <div class="li-org-links">
@@ -758,6 +796,44 @@ footer {
             <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Sue13" target="_blank" rel="noopener">Sue13</a>
           </div>
           <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
+        </div>
+      </div>
+
+      <!-- Gramps University -->
+      <div class="li-card eb" data-league="gu">
+        <div class="li-card-hdr">
+          <span class="li-card-icon">🎓</span>
+          <div class="li-card-titles">
+            <span class="li-card-name">Gramps University</span>
+            <span class="li-card-tag">Early Birds Training League · Open to EB Members · 1,000 Chip Entry</span>
+          </div>
+        </div>
+        <div class="li-card-body">
+          <p class="li-desc">Gramps University is the Early Birds training camp &mdash; a low-stakes practice league where members sharpen their skills across rotating game types to prepare for team competition. Entry is just 1,000 chips, so there&rsquo;s no pressure, only practice. GU also serves as the home for Early Birds Members Appreciation events, open to all EB members with a generous added prize pool.</p>
+          <div class="li-section-title">Friday Rotation (2:30 PM EDT)</div>
+          <div class="li-schedule">
+            <div class="li-sched-row"><span class="li-sched-day">Week 1</span><span class="li-sched-time">Friday</span><span class="li-sched-game">FL 7 Card Stud Hi/Lo <span class="li-sched-note">1,000 chip entry</span></span></div>
+            <div class="li-sched-row"><span class="li-sched-day">Week 2</span><span class="li-sched-time">Friday</span><span class="li-sched-game">NL Omaha Hi/Lo <span class="li-sched-note">1,000 chip entry</span></span></div>
+            <div class="li-sched-row"><span class="li-sched-day">Week 3</span><span class="li-sched-time">Friday</span><span class="li-sched-game">NL Royal Hold&rsquo;em <span class="li-sched-note">1,000 chip entry</span></span></div>
+          </div>
+          <div class="li-section-title">Members Appreciation Events</div>
+          <div class="li-schedule">
+            <div class="li-sched-row"><span class="li-sched-day">1st &amp; Last Sun</span><span class="li-sched-time">2:30 PM EDT</span><span class="li-sched-game">Members Appreciation MTT <span class="li-sched-note">NL Hold'em or Omaha Hi/Lo · Alternating · Added Prize Pool</span></span></div>
+          </div>
+          <div class="li-section-title">Links</div>
+          <div class="li-links">
+            <a class="li-link" href="https://docs.google.com/spreadsheets/d/1qZphyZeFvod-Eecm1HAt9PJZphx-CiZlJHC5n-sZCrI/edit?gid=1313007334#gid=1313007334" target="_blank" rel="noopener">📋 Leaderboard</a>
+            <a class="li-link" href="https://script.google.com/macros/s/AKfycbwyseXz3fBGATsMZjcgAdvpm3w_dPrOM9vOwIlkwyn-I1J05pIGablBnAaSnJU7B8RWEA/exec" target="_blank" rel="noopener">🎖 EB Captain&rsquo;s Hub</a>
+          </div>
+          <div class="li-section-title">Organizers</div>
+          <div class="li-org-links">
+            <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Grampenstein" target="_blank" rel="noopener">Grampenstein</a>
+            <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Weedwoman420" target="_blank" rel="noopener">Weedwoman420</a>
+            <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/SuzyQQ" target="_blank" rel="noopener">SuzyQQ</a>
+            <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+            <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Sue13" target="_blank" rel="noopener">Sue13</a>
+          </div>
+          <p class="li-join-note">Early Birds members are welcome anytime &mdash; just show up and play. Questions? Reach out to any organizer above.</p>
         </div>
       </div>
 
@@ -789,8 +865,7 @@ footer {
       <div class="section-heading">🏆 Leaderboard Links</div>
       <div class="lb-flat">
         <a class="lb-link nw" href="https://docs.google.com/spreadsheets/d/12rb6HCY_sctnkSWpIGYN0aFILAp7lTrrJBxIe7PuoTw/edit?usp=sharing" target="_blank" rel="noopener">Main NW LB</a>
-        <a class="lb-link nw" href="https://docs.google.com/spreadsheets/d/1jIi0QEPET3oimO1qDN7gShGewTi8n2UYNbyNLFh85KY/edit?usp=sharing" target="_blank" rel="noopener">NW All Stats</a>
-        <a class="lb-link ob" href="https://docs.google.com/spreadsheets/d/17ikWbLuxYSBvZaQYnoMfsKRzUNlhujPWAHCKFwCRYRI/edit?gid=1885499830#gid=1885499830" target="_blank" rel="noopener">Orion&rsquo;s Belt LB</a>
+<a class="lb-link ob" href="https://docs.google.com/spreadsheets/d/17ikWbLuxYSBvZaQYnoMfsKRzUNlhujPWAHCKFwCRYRI/edit?gid=1885499830#gid=1885499830" target="_blank" rel="noopener">Orion&rsquo;s Belt LB</a>
         <a class="lb-link wh" href="https://docs.google.com/spreadsheets/d/1RB39pF7h4wl4WODQsSTmNnQJOcLAIuwVvSvIPTtsiS4/edit?usp=sharing" target="_blank" rel="noopener">Wildhorses LB</a>
         <a class="lb-link hr" href="https://docs.google.com/spreadsheets/d/1tR7bD0Kv7vuFX_FJVZF7RxsStf6OUI6Nr21LTp9Hp6s/edit?usp=sharing" target="_blank" rel="noopener">High Rollers LB</a>
         <a class="lb-link eb" href="https://docs.google.com/spreadsheets/d/15uamnSc938MlU2FWu0KQibobJYtALHKU_Wgkf7VhTOQ/edit?usp=sharing" target="_blank" rel="noopener">Early Bird LB</a>
@@ -803,7 +878,7 @@ footer {
     <!-- ══ LOBBIES TAB ══ -->
     <div id="tab-lobbies" class="tab-panel">
     <div class="section-wrap">
-      <div class="section-heading">🎮 League Lobby Links</div>
+      <div class="section-heading">🎮 League Lobbies — All</div>
       <ul class="link-list">
         <li class="nw"><a href="https://www.casino.org/replaypoker/leagues/67" target="_blank" rel="noopener"><span class="dot"></span>Nordic Warriors Lobby</a></li>
         <li class="ob"><a href="https://www.casino.org/replaypoker/leagues/81" target="_blank" rel="noopener"><span class="dot"></span>Orion&rsquo;s Belt &mdash; Alnitak (1)</a></li>
@@ -811,7 +886,7 @@ footer {
         <li class="ob"><a href="https://www.casino.org/replaypoker/leagues/83" target="_blank" rel="noopener"><span class="dot"></span>Orion&rsquo;s Belt &mdash; Mintaka (3)</a></li>
         <li class="wh"><a href="https://www.casino.org/replaypoker/leagues/58" target="_blank" rel="noopener"><span class="dot"></span>Wildhorses Game Lobby</a></li>
         <li class="eb"><a href="https://www.casino.org/replaypoker/leagues/65" target="_blank" rel="noopener"><span class="dot"></span>Early Bird League Lobby</a></li>
-        <li><a href="https://www.casino.org/replaypoker/leagues/77" target="_blank" rel="noopener"><span class="dot"></span>Leagues Invitational Lobby</a></li>
+        <li><a href="https://www.casino.org/replaypoker/leagues/77" target="_blank" rel="noopener"><span class="dot"></span>Leagues Invitational Lobby <span style="font-size:.78rem;color:var(--text);font-style:italic;font-weight:400;">— High Roller Series, Whit&rsquo;s Bounty Open &amp; Player Appreciation</span></a></li>
       </ul>
     </div>
     </div>
@@ -852,15 +927,38 @@ footer {
 </footer>
 
 <script>
+google.script.run.withSuccessHandler(function(count) {
+  document.getElementById('vcNum').textContent = count.toLocaleString();
+}).getVisitCount();
+
 var TABS = ['leagueinfo','webapps','leaderboards','lobbies','forums','other'];
 
 function switchTab(name) {
+  var isLeague = name.indexOf('league-') === 0;
+  var panelName = isLeague ? 'leagueinfo' : name;
+
   TABS.forEach(function(t) {
     var panel = document.getElementById('tab-' + t);
-    if (panel) panel.classList.toggle('active', t === name);
+    if (panel) panel.classList.toggle('active', t === panelName);
   });
-  document.querySelectorAll('.sb-btn').forEach(function(b) {
-    b.classList.toggle('active', b.dataset.tab === name);
+
+  var cards = document.querySelectorAll('.li-wrap .li-card');
+  var intro = document.querySelector('.li-intro');
+  var note  = document.querySelector('.li-note');
+  if (isLeague) {
+    var key = name.replace('league-', '');
+    cards.forEach(function(c) { c.style.display = c.dataset.league === key ? '' : 'none'; });
+    if (intro) intro.style.display = 'none';
+    if (note)  note.style.display  = 'none';
+  } else {
+    cards.forEach(function(c) { c.style.display = ''; });
+    if (intro) intro.style.display = '';
+    if (note)  note.style.display  = '';
+  }
+
+  document.querySelectorAll('.sb-btn, .sb-sub-btn').forEach(function(b) {
+    var match = b.dataset.tab === name || (isLeague && b.dataset.tab === 'leagueinfo');
+    b.classList.toggle('active', match);
   });
   document.querySelectorAll('.mobile-nav-btn').forEach(function(b) {
     b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + name + "'") !== -1);
