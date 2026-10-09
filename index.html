@@ -927,11 +927,9 @@ footer {
 </footer>
 
 <script>
- if (typeof google !== 'undefined' && google.script) {
-    google.script.run.withSuccessHandler(function(count) {
-      document.getElementById('vcNum').textContent = count.toLocaleString();
-    }).getVisitCount();
-  }
+google.script.run.withSuccessHandler(function(count) {
+  document.getElementById('vcNum').textContent = count.toLocaleString();
+}).getVisitCount();
 
 var TABS = ['leagueinfo','webapps','leaderboards','lobbies','forums','other'];
 
