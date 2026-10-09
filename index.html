@@ -927,43 +927,45 @@ footer {
 </footer>
 
 <script>
-google.script.run.withSuccessHandler(function(count) {
-  document.getElementById('vcNum').textContent = count.toLocaleString();
-}).getVisitCount();
-
-var TABS = ['leagueinfo','webapps','leaderboards','lobbies','forums','other'];
-
-function switchTab(name) {
-  var isLeague = name.indexOf('league-') === 0;
-  var panelName = isLeague ? 'leagueinfo' : name;
-
-  TABS.forEach(function(t) {
-    var panel = document.getElementById('tab-' + t);
-    if (panel) panel.classList.toggle('active', t === panelName);
-  });
-
-  var cards = document.querySelectorAll('.li-wrap .li-card');
-  var intro = document.querySelector('.li-intro');
-  var note  = document.querySelector('.li-note');
-  if (isLeague) {
-    var key = name.replace('league-', '');
-    cards.forEach(function(c) { c.style.display = c.dataset.league === key ? '' : 'none'; });
-    if (intro) intro.style.display = 'none';
-    if (note)  note.style.display  = 'none';
-  } else {
-    cards.forEach(function(c) { c.style.display = ''; });
-    if (intro) intro.style.display = '';
-    if (note)  note.style.display  = '';
+  if (typeof google !== 'undefined' && google.script) {
+    google.script.run.withSuccessHandler(function(count) {
+      document.getElementById('vcNum').textContent = count.toLocaleString();
+    }).getVisitCount();
   }
 
-  document.querySelectorAll('.sb-btn, .sb-sub-btn').forEach(function(b) {
-    var match = b.dataset.tab === name || (isLeague && b.dataset.tab === 'leagueinfo');
-    b.classList.toggle('active', match);
-  });
-  document.querySelectorAll('.mobile-nav-btn').forEach(function(b) {
-    b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + name + "'") !== -1);
-  });
-}
-</script>
+  var TABS = ['leagueinfo','webapps','leaderboards','lobbies','forums','other'];
+
+  function switchTab(name) {
+    var isLeague = name.indexOf('league-') === 0;
+    var panelName = isLeague ? 'leagueinfo' : name;
+
+    TABS.forEach(function(t) {
+      var panel = document.getElementById('tab-' + t);
+      if (panel) panel.classList.toggle('active', t === panelName);
+    });
+
+    var cards = document.querySelectorAll('.li-wrap .li-card');
+    var intro = document.querySelector('.li-intro');
+    var note  = document.querySelector('.li-note');
+    if (isLeague) {
+      var key = name.replace('league-', '');
+      cards.forEach(function(c) { c.style.display = c.dataset.league === key ? '' : 'none'; });
+      if (intro) intro.style.display = 'none';
+      if (note)  note.style.display  = 'none';
+    } else {
+      cards.forEach(function(c) { c.style.display = ''; });
+      if (intro) intro.style.display = '';
+      if (note)  note.style.display  = '';
+    }
+
+    document.querySelectorAll('.sb-btn, .sb-sub-btn').forEach(function(b) {
+      var match = b.dataset.tab === name || (isLeague && b.dataset.tab === 'leagueinfo');
+      b.classList.toggle('active', match);
+    });
+    document.querySelectorAll('.mobile-nav-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('onclick').indexOf("'" + name + "'") !== -1);
+    });
+  }
+  </script>
 </body>
 </html>
