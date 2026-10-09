@@ -927,12 +927,11 @@ footer {
 </footer>
 
 <script>
-google.script.run.withSuccessHandler(function(count) {
-  document.getElementById('vcNum').textContent = count.toLocaleString();
-  if (typeof google !== 'undefined' && google.script) {
+ if (typeof google !== 'undefined' && google.script) {
     google.script.run.withSuccessHandler(function(count) {
       document.getElementById('vcNum').textContent = count.toLocaleString();
-}).getVisitCount();
+    }).getVisitCount();
+  }
 
 var TABS = ['leagueinfo','webapps','leaderboards','lobbies','forums','other'];
 
